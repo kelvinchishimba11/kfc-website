@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Komboni Fighters Club | MMA Zambia</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#080808;
+color:#fff;
+line-height:1.6;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:1000;
+background:rgba(0,0,0,.96);
+border-bottom:1px solid #333;
+padding:16px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:22px;
+font-weight:900;
+color:#e50914;
+}
+
+nav ul{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+nav a{
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+}
+
+nav a:hover{
+color:#e50914;
+}
+
+.menu{
+display:none;
+font-size:28px;
+cursor:pointer;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:120px 20px 60px;
+background:
+linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.95)),
+radial-gradient(circle,#4b0000,#080808 70%);
+}
+
+.hero h1{
+font-size:clamp(45px,8vw,90px);
+font-weight:900;
+line-height:1;
+}
+
+.hero h1 span{
+color:#e50914;
+}
+
+.hero p{
+max-width:750px;
+margin:25px auto;
+font-size:20px;
+color:#ccc;
+}
+
+.btn{
+display:inline-block;
+padding:14px 28px;
+margin:7px;
+background:#e50914;
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+border-radius:5px;
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+background:#ff2835;
+}
+
+section{
+padding:90px 7%;
+}
+
+.title{
+text-align:center;
+margin-bottom:45px;
+}
+
+.title h2{
+font-size:42px;
+text-transform:uppercase;
+}
+
+.title p{
+color:#aaa;
+}
+
+.about-grid,
+.news-grid,
+.program-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:#121212;
+border:1px solid #292929;
+border-radius:12px;
+padding:28px;
+}
+
+.card h3{
+color:#e50914;
+margin-bottom:10px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-top:25px;
+}
+
+.stat{
+background:#151515;
+padding:25px;
+text-align:center;
+border-radius:10px;
+}
+
+.stat h3{
+font-size:38px;
+color:#e50914;
+}
+
+.fighters{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+}
+
+.fighter{
+background:#111;
+border:1px solid #292929;
+border-radius:12px;
+padding:25px;
+text-align:center;
+transition:.3s;
+}
+
+.fighter:hover{
+transform:translateY(-8px);
+border-color:#e50914;
+}
+
+.avatar{
+width:110px;
+height:110px;
+margin:auto;
+border-radius:50%;
+background:linear-gradient(135deg,#e50914,#222);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:35px;
+font-weight:bold;
+}
+
+.fighter h3{
+margin-top:15px;
+}
+
+.record{
+color:#e50914;
+font-weight:bold;
+margin-top:8px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+}
+
+.gallery-item{
+height:220px;
+border-radius:12px;
+background:
+linear-gradient(135deg,#e50914,#111);
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+border:1px solid #333;
+}
+
+.news-card{
+background:#121212;
+border-radius:12px;
+padding:25px;
+border:1px solid #292929;
+}
+
+.news-date{
+color:#e50914;
+font-weight:bold;
+font-size:14px;
+}
+
+.news-card h3{
+margin:10px 0;
+}
+
+.schedule{
+width:100%;
+border-collapse:collapse;
+background:#111;
+}
+
+.schedule th,
+.schedule td{
+padding:16px;
+border-bottom:1px solid #333;
+text-align:left;
+}
+
+.schedule th{
+background:#e50914;
+}
+
+.contact-box{
+max-width:800px;
+margin:auto;
+text-align:center;
+}
+
+.whatsapp{
+display:inline-block;
+margin-top:20px;
+padding:16px 30px;
+background:#25D366;
+color:#fff;
+text-decoration:none;
+border-radius:7px;
+font-weight:bold;
+font-size:18px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+background:#050505;
+border-top:1px solid #222;
+color:#aaa;
+}
+
+@media(max-width:800px){
+
+nav ul{
+display:none;
+position:absolute;
+top:64px;
+left:0;
+width:100%;
+background:#050505;
+flex-direction:column;
+padding:25px;
+}
+
+nav ul.show{
+display:flex;
+}
+
+.menu{
+display:block;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+section{
+padding:75px 5%;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+KFC | MMA ZAMBIA
+</div>
+
+<div class="menu" onclick="toggleMenu()">☰</div>
+
+<ul id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#fighters">Fighters</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#news">News</a></li>
+<li><a href="#training">Training</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<section class="hero" id="home">
+
+<div>
+
+<h1>
+KOMBONI
+<span>FIGHTERS</span>
+CLUB
+</h1>
+
+<p>
+Building disciplined athletes through Mixed Martial Arts,
+Taekwondo, Wrestling, Brazilian Jiu-Jitsu and combat sports.
+</p>
+
+<a href="#fighters" class="btn">OUR FIGHTERS</a>
+
+<a href="#contact" class="btn">JOIN KFC</a>
+
+</div>
+
+</section>
+
+
+<section id="about">
+
+<div class="title">
+<h2>About KFC</h2>
+<p>Discipline • Strength • Respect • Community</p>
+</div>
+
+<div class="about-grid">
+
+<div class="card">
+
+<h3>Our Mission</h3>
+
+<p>
+Komboni Fighters Club is a community fighting club based at
+Olympic Youth Development Center (OYDC), Lusaka, Zambia.
+</p>
+
+<br>
+
+<p>
+The club focuses on athlete development, discipline,
+combat-sport training and positive youth development.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Our Sports</h3>
+
+<p>🥊 Mixed Martial Arts</p>
+<p>🥋 Taekwondo</p>
+<p>🤼 Wrestling</p>
+<p>🟦 Brazilian Jiu-Jitsu</p>
+<p>💪 Strength & Conditioning</p>
+
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h3>2018+</h3>
+<p>Development</p>
+</div>
+
+<div class="stat">
+<h3>MMA</h3>
+<p>Combat Sports</p>
+</div>
+
+<div class="stat">
+<h3>ZMB</h3>
+<p>Zambia</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="fighters">
+
+<div class="title">
+
+<h2>Fighter Profiles</h2>
+
+<p>
+Meet athletes representing the club
+</p>
+
+</div>
+
+<div class="fighters">
+
+<div class="fighter">
+
+<div class="avatar">AB</div>
+
+<h3>Alex Bwalya</h3>
+
+<p><strong>MMA Fighter</strong></p>
+
+<p>🥊 Komboni Fighters Club</p>
+
+<p>🏆 <strong>2026 IMMAF African Champion</strong></p>
+
+<p>Division: Junior Bantamweight</p>
+
+<p class="record">
+MMA Record: 6 Wins - 1 Loss
+</p>
+
+<hr style="border:0;border-top:1px solid #333;margin:18px 0;">
+
+<h4 style="color:#e50914;margin-bottom:10px;">
+African Championship Achievement
+</h4>
+
+<p>
+Alex Bwalya won Gold at the 2026 IMMAF African Championships
+in Luanda, Angola, becoming African Champion in the
+Junior Bantamweight division.
+</p>
+
+<br>
+
+<h4 style="color:#e50914;margin-bottom:10px;">
+Fight Record
+</h4>
+
+<p>✅ Daniel Mungole — Win, TKO</p>
+<p>✅ Jonathan Banda — Win, TKO / Doctor Stoppage</p>
+<p>✅ Moses Mulenga — Win, Unanimous Decision</p>
+<p>✅ Joshua Mulenga — Win, Unanimous Decision</p>
+<p>✅ Moses Chisala — Win, Split Decision</p>
+<p>❌ Perfecto Chanda — Loss, Split Decision</p>
+<p>✅ Lutonado Lumvuiki — Win, Split Decision</p>
+
+</div>
+
+
+<div class="fighter">
+
+<div class="avatar">JP</div>
+
+<h3>James Phiri</h3>
+
+<p>Weight: 61.8 kg</p>
+
+<p class="record">
+MMA Record: 3 - 3
+</p>
+
+</div>
+
+
+<div class="fighter">
+
+<div class="avatar">MS</div>
+
+<h3>Matthews Sichula</h3>
+
+<p>Weight: 74 kg</p>
+
+<p class="record">
+MMA Record: 2 - 1
+</p>
+
+</div>
+
+
+<div class="fighter">
+
+<div class="avatar">BM</div>
+
+<h3>Benjamin Mwila</h3>
+
+<p>Weight: 54–56 kg</p>
+
+<p class="record">
+MMA Record: 1 - 0
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="gallery">
+
+<div class="title">
+
+<h2>Fight Gallery</h2>
+
+<p>
+KFC training and competition moments
+</p>
+
+</div>
+
+<div class="gallery">
+
+<div class="gallery-item">
+TRAINING<br>
+PHOTO
+</div>
+
+<div class="gallery-item">
+MMA<br>
+COMPETITION
+</div>
+
+<div class="gallery-item">
+TAEKWONDO<br>
+TRAINING
+</div>
+
+<div class="gallery-item">
+TEAM<br>
+KFC
+</div>
+
+<div class="gallery-item">
+FIGHT<br>
+NIGHT
+</div>
+
+<div class="gallery-item">
+CHAMPIONSHIP<br>
+MOMENT
+</div>
+
+</div>
+
+<p style="text-align:center;color:#888;margin-top:25px;">
+Your real KFC photographs can be added here later.
+</p>
+
+</section>
+
+
+<section id="news">
+
+<div class="title">
+
+<h2>News & Announcements</h2>
+
+<p>
+Latest KFC updates
+</p>
+
+</div>
+
+<div class="news-grid">
+
+<div class="news-card">
+
+<div class="news-date">
+KFC UPDATE
+</div>
+
+<h3>
+Athlete Development
+</h3>
+
+<p>
+KFC continues to develop athletes through structured
+MMA, wrestling, BJJ, Taekwondo and conditioning sessions.
+</p>
+
+</div>
+
+
+<div class="news-card">
+
+<div class="news-date">
+COMPETITION
+</div>
+
+<h3>
+Competition Preparation
+</h3>
+
+<p>
+Fighters preparing for competition receive structured
+technical, physical and tactical preparation.
+</p>
+
+</div>
+
+
+<div class="news-card">
+
+<div class="news-date">
+COMMUNITY
+</div>
+
+<h3>
+Youth Development
+</h3>
+
+<p>
+Combat sports are used to promote discipline,
+fitness, teamwork and positive youth development.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="training">
+
+<div class="title">
+
+<h2>Training Schedule</h2>
+
+<p>
+Regular KFC training sessions
+</p>
+
+</div>
+
+<table class="schedule">
+
+<tr>
+<th>Day</th>
+<th>Time</th>
+<th>Training</th>
+</tr>
+
+<tr>
+<td>Monday</td>
+<td>14:30 – 17:00</td>
+<td>MMA / Wrestling / BJJ</td>
+</tr>
+
+<tr>
+<td>Tuesday</td>
+<td>14:30 – 17:00</td>
+<td>Striking / Kicks / Conditioning</td>
+</tr>
+
+<tr>
+<td>Wednesday</td>
+<td>14:30 – 17:00</td>
+<td>MMA / Wrestling / Submissions</td>
+</tr>
+
+<tr>
+<td>Thursday</td>
+<td>14:30 – 17:00</td>
+<td>Striking / Groundwork</td>
+</tr>
+
+<tr>
+<td>Friday</td>
+<td>14:30 – 17:00</td>
+<td>Conditioning / Physique / Sparring</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<section>
+
+<div class="title">
+
+<h2>Training Programs</h2>
+
+<p>
+Programs for beginners and competitive athletes
+</p>
+
+</div>
+
+<div class="program-grid">
+
+<div class="card">
+
+<h3>🥊 MMA</h3>
+
+<p>
+Striking, takedowns, grappling, submissions
+and MMA fundamentals.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🥋 Taekwondo</h3>
+
+<p>
+Kicking techniques, movement, speed,
+flexibility and discipline.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🤼 Wrestling</h3>
+
+<p>
+Takedowns, control, balance and grappling.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🟦 BJJ</h3>
+
+<p>
+Ground fighting, escapes, positional control
+and submissions.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="contact">
+
+<div class="title">
+
+<h2>Contact KFC</h2>
+
+<p>
+Interested in joining Komboni Fighters Club?
+</p>
+
+</div>
+
+<div class="contact-box card">
+
+<h3>Komboni Fighters Club</h3>
+
+<p>
+📍 OYDC, Lusaka, Zambia
+</p>
+
+<p>
+🥊 MMA • Taekwondo • Wrestling • BJJ
+</p>
+
+<a
+class="whatsapp"
+href="https://wa.me/260000000000"
+target="_blank">
+💬 Contact KFC on WhatsApp
+</a>
+
+<p style="margin-top:20px;color:#888;">
+The WhatsApp number can be changed to the official
+KFC number when you are ready.
+</p>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>
+© 2026 Komboni Fighters Club | MMA Zambia
+</p>
+
+<p>
+Discipline • Strength • Respect
+</p>
+
+</footer>
+
+
+<script>
+
+function toggleMenu(){
+
+document
+.getElementById("navLinks")
+.classList
+.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

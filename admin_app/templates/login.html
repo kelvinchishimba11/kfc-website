@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KFC Admin Login</title>
+<style>
+body{
+font-family:Arial;
+background:#080808;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+.box{
+width:360px;
+background:#151515;
+padding:35px;
+border-radius:12px;
+border:1px solid #333;
+}
+h1{text-align:center;color:#e50914}
+input{
+width:100%;
+padding:14px;
+margin:8px 0;
+box-sizing:border-box;
+background:#222;
+border:1px solid #444;
+color:white;
+border-radius:5px;
+}
+button{
+width:100%;
+padding:14px;
+background:#e50914;
+border:0;
+color:white;
+font-weight:bold;
+border-radius:5px;
+margin-top:10px;
+}
+.error{
+color:#ff5555;
+text-align:center;
+}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>KFC ADMIN</h1>
+
+{% with messages = get_flashed_messages() %}
+{% for message in messages %}
+<p class="error">{{ message }}</p>
+{% endfor %}
+{% endwith %}
+
+<form method="POST">
+<input name="username" placeholder="Username" required>
+<input type="password" name="password" placeholder="Password" required>
+<button type="submit">LOGIN</button>
+</form>
+</div>
+</body>
+</html>

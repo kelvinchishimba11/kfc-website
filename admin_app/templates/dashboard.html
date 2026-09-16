@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KFC Admin Dashboard</title>
+<style>
+*{box-sizing:border-box}
+body{
+font-family:Arial;
+background:#090909;
+color:white;
+margin:0;
+}
+header{
+background:#151515;
+padding:20px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #333;
+}
+header h1{color:#e50914}
+.logout{
+color:white;
+background:#e50914;
+padding:10px 15px;
+text-decoration:none;
+border-radius:5px;
+}
+main{
+max-width:1200px;
+margin:auto;
+padding:30px;
+}
+.card{
+background:#141414;
+padding:25px;
+margin-bottom:25px;
+border:1px solid #292929;
+border-radius:10px;
+}
+input,textarea{
+width:100%;
+padding:12px;
+margin:7px 0;
+background:#222;
+border:1px solid #444;
+color:white;
+border-radius:5px;
+}
+textarea{min-height:100px}
+button{
+padding:12px 18px;
+background:#e50914;
+border:0;
+color:white;
+font-weight:bold;
+border-radius:5px;
+cursor:pointer;
+}
+.item{
+padding:15px 0;
+border-bottom:1px solid #333;
+}
+.delete{
+color:#ff5555;
+text-decoration:none;
+margin-left:15px;
+}
+.photo{
+max-width:150px;
+max-height:120px;
+display:block;
+margin:10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>KFC ADMIN</h1>
+<a class="logout" href="/admin/logout">Logout</a>
+</header>
+
+<main>
+
+<div class="card">
+<h2>Welcome to the KFC Dashboard</h2>
+<p>From here you can manage fighters, news and photographs.</p>
+</div>
+
+<div class="card">
+<h2>👊 Add Fighter</h2>
+
+<form method="POST" action="/admin/fighter/add">
+
+<input name="name" placeholder="Fighter name" required>
+
+<input name="division" placeholder="Weight / division">
+
+<input name="record" placeholder="MMA record">
+
+<input name="achievement" placeholder="Major achievement">
+
+<textarea name="description" placeholder="Fighter description"></textarea>
+
+<button>Add Fighter</button>
+
+</form>
+
+<h3>Current Fighters</h3>
+
+{% for fighter in fighters %}
+<div class="item">
+<strong>{{ fighter.name }}</strong>
+<br>
+{{ fighter.division }} | {{ fighter.record }}
+<a class="delete"
+href="/admin/fighter/delete/{{ fighter.id }}">
+Delete
+</a>
+</div>
+{% endfor %}
+
+</div>
+
+
+<div class="card">
+
+<h2>📰 Add News</h2>
+
+<form method="POST" action="/admin/news/add">
+
+<input name="title" placeholder="News title" required>
+
+<textarea name="content" placeholder="News content" required></textarea>
+
+<button>Publish News</button>
+
+</form>
+
+<h3>Published News</h3>
+
+{% for item in news %}
+<div class="item">
+<strong>{{ item.title }}</strong>
+<p>{{ item.content }}</p>
+
+<a class="delete"
+href="/admin/news/delete/{{ item.id }}">
+Delete
+</a>
+
+</div>
+{% endfor %}
+
+</div>
+
+
+<div class="card">
+
+<h2>📸 Upload Photo</h2>
+
+<form method="POST"
+action="/admin/photo/upload"
+enctype="multipart/form-data">
+
+<input type="file" name="photo" accept="image/*" required>
+
+<input name="caption" placeholder="Photo caption">
+
+<button>Upload Photo</button>
+
+</form>
+
+<h3>Gallery Photos</h3>
+
+{% for photo in photos %}
+
+<div class="item">
+
+<img
+class="photo"
+src="/static/uploads/{{ photo.filename }}"
+alt="{{ photo.caption }}"
+>
+
+{{ photo.caption }}
+
+<a class="delete"
+href="/admin/photo/delete/{{ photo.id }}">
+Delete
+</a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</main>
+
+</body>
+</html>

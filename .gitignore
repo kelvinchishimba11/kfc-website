@@ -1,0 +1,7 @@
+kfc-env/
+__pycache__/
+*.pyc
+admin_app/kfc.db
+admin_app/static/uploads/
+.env
+*.log
