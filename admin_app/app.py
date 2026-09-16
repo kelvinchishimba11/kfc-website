@@ -256,6 +256,8 @@ def delete_photo(id):
 @app.route("/")
 def home():
     return send_from_directory(os.path.dirname(app.root_path), "index.html")
-if __name__ == "__main__":
-    setup()
+
+setup()
+
+if __name__ == "__main__":  
     app.run(host="0.0.0.0", port=8080, debug=False)
