@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import sqlite3
@@ -255,8 +255,7 @@ def delete_photo(id):
 
 @app.route("/")
 def home():
-    return redirect("/admin")
-
+    return send_from_directory(os.path.dirname(app.root_path), "index.html")
 if __name__ == "__main__":
     setup()
     app.run(host="0.0.0.0", port=8080, debug=False)
