@@ -39,7 +39,9 @@ def setup():
         division TEXT,
         record TEXT,
         achievement TEXT,
-        description TEXT
+        description TEXT,
+        age INTEGER,
+        photo TEXT
     )
     """)
 
@@ -146,14 +148,21 @@ def add_fighter():
     record = request.form.get("record", "")
     achievement = request.form.get("achievement", "")
     description = request.form.get("description", "")
+    age = request.form.get("age", type=int)
+    photo = request.files.get("photo")
+    photo_filename = None
+
+    if photo and photo.filename:
+        photo_filename = secure_filename(photo.filename)
+        photo.save(os.path.join(UPLOAD_FOLDER, photo_filename))
 
     if name:
         con = db()
         con.execute("""
         INSERT INTO fighters
-        (name,division,record,achievement,description)
-        VALUES (?,?,?,?,?)
-        """, (name, division, record, achievement, description))
+        (name,division,record,achievement,description,age,photo)
+        VALUES (?,?,?,?,?,?,?)
+        """, (name, division, record, achievement, description, age, photo_filename))
         con.commit()
         con.close()
 
